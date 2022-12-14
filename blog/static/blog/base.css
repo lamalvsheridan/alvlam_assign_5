@@ -3,12 +3,19 @@ html {
 }
 
 body {
-  display: grid;  /* Use CSS grid */
+  margin: 0;
+  height: 100%;
+  min-height: 100%;  /* Full height */
+  padding: 0;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+body .wrapper {
+  display: grid;  /* Use CSS grid */
   grid-template-rows: auto auto 1fr auto;  /* Sticky footer */
   margin: 0 auto;  /* Centers the page */
-  max-width: 1000px;  /* Set max width */
   min-height: 100%;  /* Full height */
+  max-width: 1000px;  /* Set max width */
   padding: 1rem;
 }
 
@@ -133,4 +140,69 @@ aside section {
 #topic-detail-article h1 {
   margin-bottom: 0;
   padding-bottom: 0;
+}
+
+/* Forms */
+
+/* Style the left form table label column */
+form table tbody tr th {
+  max-width: 200px;
+  text-align: right;
+  padding: 0.5em 1em 0.5em 0;
+  font-weight: 100;
+}
+
+/* Add some vertical spacing between rows */
+form table tbody td {
+  padding: 0.5em 0;
+}
+
+/* Style inputs */
+input {
+  border-radius: 0px;
+  font-size: 1em;
+  padding: 0.3em 0.5em;
+}
+
+/* Style button */
+button {
+  font-size: 1em;
+  color: #000;
+  cursor: pointer;
+  padding: 0.5em 3em;
+  border: 1px solid #999;
+  background: #eee;
+}
+
+/* Style select */
+select {
+  font-size: 1em;
+  padding: 1em;
+  line-height: 1.5em;
+}
+
+/* Style error messages */
+form .errorlist {
+  font-size: 0.9em;
+  font-weight: bold;
+  color: red;
+  padding: 0 0 0 1.5em;
+  margin: 0;
+}
+
+/* Messages */
+.django-messages {
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 0;
+  list-style: none;
+}
+
+.django-messages div {
+  padding: 1rem;
+}
+
+.django-messages .success {
+  background: #bdfcb3;
+  color: #355430;
 }

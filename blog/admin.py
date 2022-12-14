@@ -78,8 +78,33 @@ class CommentAdmin(admin.ModelAdmin):
     )
 
 
+class ContestAdmin(admin.ModelAdmin):
+    readonly_fields=('submitted_date',)
+
+    fields = (
+        'first_name',
+        'last_name',
+        'email',
+        'submission',
+        'submitted_date',
+    )
+
+    list_display = (
+        'email',
+        'first_name',
+        'last_name',
+        'submitted_date'
+    )
+
+    search_fields = (
+        'first_name',
+        'last_name',
+        'email',
+    )
+
 
 # Register models
 admin.site.register(models.Topic, TopicAdmin)
 admin.site.register(models.Post, PostAdmin)
 admin.site.register(models.Comment, CommentAdmin)
+admin.site.register(models.Contest, ContestAdmin)

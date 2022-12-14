@@ -14,7 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 from blog import views
 
@@ -40,4 +43,9 @@ urlpatterns = [
         views.TopicDetailView.as_view(),
         name='topic-detail',
     ),
-]
+    path(
+        'contest/',
+        views.ContestView.as_view(),
+        name='contest-form'
+    ),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

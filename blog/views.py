@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.db.models import Count
 
-from django.views.generic.base import TemplateView
-from django.views.generic import ListView
-from django.views.generic import DetailView
+from django.contrib import messages
 
-from . import models
+from django.views.generic.base import TemplateView
+from django.views.generic import DetailView, CreateView, FormView, ListView
+from django.urls import reverse_lazy
+
+from . import forms, models
 
 
 class HomeView(TemplateView):
@@ -85,3 +87,27 @@ class TopicDetailView(DetailView):
         })
 
         return context
+
+
+class ContestView(CreateView):
+    model = models.Contest
+
+    template_name = 'blog/contest_form.html'
+    success_url = reverse_lazy('home')
+
+    fields = [
+        'first_name',
+        'last_name',
+        'email',
+        'submission',
+    ]
+
+    def form_valid(self, form):
+        # Create a "success" message
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            'Thank you for submitting your entry to the Photo Contest!'
+        )
+        # Continue with default behaviour
+        return super().form_valid(form)

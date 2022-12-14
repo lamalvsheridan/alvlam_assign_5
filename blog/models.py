@@ -192,3 +192,37 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Contest(models.Model):
+    # The first name of the person submitting the photo (required)
+    first_name = models.CharField(
+        max_length=50,
+        null=False,
+        blank=False,
+    )
+    # The last name of the person submitting the photo (required)
+    last_name = models.CharField(
+        max_length=50,
+        null=False,
+        blank=False,
+    )
+    # The email address of the person submitting the photo (required)
+    email = models.CharField(
+        max_length=100,
+        null=False,
+        blank=False,
+    )
+    # The submitted photo (required)
+    submission = models.ImageField(
+        null=False,
+        blank=False,
+    )
+    # The date submitted, generated on created
+    submitted_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-submitted_date']
+
+    def __str__(self):
+        return f'{self.submitted_date}: {self.email}'

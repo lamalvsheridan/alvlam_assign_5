@@ -7,56 +7,68 @@
 </head>
 
 <body>
-  <!-- The header -->
-  <header id="site-header">
-     <h1>My Blog</h1>
-     <p>A blog about awesomeness</p>
-  </header>
+  <!-- Confirmation message -->
+  {% if messages %}
+  <div class="django-messages">
+    {% for message in messages %}
+    <div{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
 
-  <!-- Top navigation -->
-  <nav id="top-nav">
-    <ul>
-      <li><a href="{% url "home" %}">Home</a></li>
-      <li><a href="{% url "about" %}">About</a></li>
-      <li><a href="{% url "post-list" %}">Posts</a></li>
-      <li><a href="{% url "topic-list" %}">Topics</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </nav>
+  <div class="wrapper">
+    <!-- The header -->
+    <header id="site-header">
+       <h1>My Blog</h1>
+       <p>A blog about awesomeness</p>
+    </header>
 
-  <main id="main-content">
-    <div>
-      {% block main %}
-        <!-- Content for the main block will be rendered here -->
-      {% endblock %}
-    </div>
+    <!-- Top navigation -->
+    <nav id="top-nav">
+      <ul>
+        <li><a href="{% url "home" %}">Home</a></li>
+        <li><a href="{% url "about" %}">About</a></li>
+        <li><a href="{% url "post-list" %}">Posts</a></li>
+        <li><a href="{% url "topic-list" %}">Topics</a></li>
+        <li><a href="{% url "contest-form" %}">Photo Contest</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
 
-    <aside>
-      <section id="topics-list">
-        <h3>Popular Topics</h3>
-        <em>From the last 10 posts</em>
-        <ul>
-          {% for topic in topics_aside %}
-            <li><a href="{{ topic.get_absolute_url }}">{{ topic }} ({{ topic.blog_posts__count}})</a></li>
-          {% endfor %}
-        </ul>
-      </section>
+    <main id="main-content">
+      <div>
+        {% block main %}
+          <!-- Content for the main block will be rendered here -->
+        {% endblock %}
+      </div>
 
-      <section id="author-list">
-        <h3>Authors</h3>
-        <ul>
-          {% for author in authors %}
-            <li>{{ author.get_full_name }}</li>
-          {% endfor %}
-        </ul>
-      </section>
-    </aside>
-  </main>
+      <aside>
+        <section id="topics-list">
+          <h3>Popular Topics</h3>
+          <em>From the last 10 posts</em>
+          <ul>
+            {% for topic in topics_aside %}
+              <li><a href="{{ topic.get_absolute_url }}">{{ topic }} ({{ topic.blog_posts__count}})</a></li>
+            {% endfor %}
+          </ul>
+        </section>
 
-  <!-- The footer -->
-  <footer id="site-footer">
-    Copyright &copy; {% now 'Y' %} –
-    <a href="{% url "terms-and-conditions" %}">Terms & conditions</a>
-  </footer>
+        <section id="author-list">
+          <h3>Authors</h3>
+          <ul>
+            {% for author in authors %}
+              <li>{{ author.get_full_name }}</li>
+            {% endfor %}
+          </ul>
+        </section>
+      </aside>
+    </main>
+
+    <!-- The footer -->
+    <footer id="site-footer">
+      Copyright &copy; {% now 'Y' %} –
+      <a href="{% url "terms-and-conditions" %}">Terms & conditions</a>
+    </footer>
+  </div>
 </body>
 </html>

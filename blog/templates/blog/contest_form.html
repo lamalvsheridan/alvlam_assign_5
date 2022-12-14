@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+
+{% block main %}
+<h1>Photo Contest Registration</h1>
+
+<form action="" method="post" enctype="multipart/form-data" novalidate>
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+    <tr>
+      <td colspan=2>
+        <button type="submit">Submit</button>
+      </td>
+    </tr>
+  </table>
+</form>
+
+{% endblock %}
