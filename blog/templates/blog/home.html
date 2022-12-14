@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %}
+
+{% block main %}
+<section class="latest-article-preview">
+  <h1>Home</h1>
+  <h3>Latest Posts</h3>
+  {% for post in latest_posts %}
+    {% include "blog/post_preview.html" %}
+  {% endfor %}
+
+</section>
+{% endblock %}

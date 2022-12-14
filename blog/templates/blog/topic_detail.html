@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+
+{% block page_title %}{{ topic.name }}{% endblock %}
+
+{% block main %}
+<article id="topic-detail-article">
+  <h1>Blog Posts with Topic: {{ topic.name }}</h1>
+
+  {% for post in blog_posts %}
+    {% include "blog/post_preview.html" %}
+  {% endfor %}
+</article>
+{% endblock %}
